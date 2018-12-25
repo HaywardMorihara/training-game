@@ -1,35 +1,35 @@
 Pokemon = function() {
-	
-	var pokemon;
 
-	var speed = 100;
+  var pokemon;
 
-	var scale = 1.5;
+  var speed = 100;
 
-	var fps = 10;
+  var scale = 1.5;
 
-	function init() {
-		this.pokemon = Character.create(200, 200, 'cyndaquil', scale);
+  var fps = 10;
 
-	    this.pokemon.animations.add('walk-down', [0, 1, 2, 1]);
-	    this.pokemon.animations.add('walk-up', [3, 4, 5, 4]);
-	    this.pokemon.animations.add('walk-side', [6, 7, 8, 7]);
-    }
+  function init() {
+    this.pokemon = Character.create(200, 200, 'cyndaquil', scale);
 
-    function update() {
-    	this.pokemon.direction = Direction.NONE;
+    this.pokemon.animations.add('walk-down', [0, 1, 2, 1]);
+    this.pokemon.animations.add('walk-up', [3, 4, 5, 4]);
+    this.pokemon.animations.add('walk-side', [6, 7, 8, 7]);
+  }
 
-    	Character.update(this.pokemon, speed);
-    }
+  function update() {
+    this.pokemon.direction = Direction.NONE;
 
-    function render() {
-    	Character.render(this.pokemon, scale, fps)
-    }
+    Character.update(this.pokemon, speed);
+  }
 
-	return {
-		pokemon: pokemon,
-		init: init,
-		update: update,
-		render: render
-	}
+  function render() {
+    Character.render(this.pokemon, scale, fps)
+  }
+
+  return {
+    pokemon: pokemon,
+    init: init,
+    update: update,
+    render: render
+  }
 }();

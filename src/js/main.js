@@ -1,54 +1,54 @@
 var Game;
 
 Main = {
-    debugMode: false,
-    screenWidth: 800,
-    screenHeight: 800
+  debugMode: false,
+  screenWidth: 800,
+  screenHeight: 800
 };
 
 function preload() {
-    //Sprites from https://www.spriters-resource.com/ds_dsi/pokemonmysterydungeonexplorersoftimedarkness/
-    Game.load.spritesheet('trainer', 'assets/sprites/trainer.png', 16, 20);
-    Game.load.spritesheet('cyndaquil', 'assets/sprites/cyndaquil.png', 21, 21);
+  //Sprites from https://www.spriters-resource.com/ds_dsi/pokemonmysterydungeonexplorersoftimedarkness/
+  Game.load.spritesheet('trainer', 'assets/sprites/trainer.png', 16, 20);
+  Game.load.spritesheet('cyndaquil', 'assets/sprites/cyndaquil.png', 21, 21);
 }
 
 function create() {
-    
-    Game.stage.backgroundColor = '#124184';
 
-    Game.physics.startSystem(Phaser.Physics.ARCADE);
+  Game.stage.backgroundColor = '#124184';
 
-    Controller.init();
+  Game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    Character.init();
+  Controller.init();
 
-    Trainer.init();
+  Character.init();
 
-    Pokemon.init();
+  Trainer.init();
+
+  Pokemon.init();
 }
 
 function update() {
-    Trainer.update();
-    
-    Pokemon.update();
+  Trainer.update();
 
-    Game.physics.arcade.collide(Character.characterGroup);
+  Pokemon.update();
+
+  Game.physics.arcade.collide(Character.characterGroup);
 }
 
 function render() {
-    Trainer.render();
+  Trainer.render();
 
-    Pokemon.render();
+  Pokemon.render();
 
-    if (Main.debugMode) {
-        Trainer.debug();
-    }
+  if (Main.debugMode) {
+    Trainer.debug();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-   Game = new Phaser.Game(Main.screenWidth, Main.screenHeight, Phaser.AUTO, 'training-game', 
-    { preload: preload, 
-        create: create, 
-        update: update, 
+  Game = new Phaser.Game(Main.screenWidth, Main.screenHeight, Phaser.AUTO, 'training-game',
+      { preload: preload,
+        create: create,
+        update: update,
         render: render });
 }, false);
