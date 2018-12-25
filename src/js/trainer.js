@@ -1,50 +1,50 @@
 Trainer = function() {
 
-  var trainer;
+    var trainer;
 
-  var speed = 100;
+    var speed = 100;
 
-  var scale = 2;
+    var scale = 2;
 
-  var fps = 10;
+    var fps = 10;
 
-  function init() {
-    this.trainer = Character.create(300, 200, 'trainer', scale);
+    function init() {
+        this.trainer = Character.create(300, 200, 'trainer', scale);
 
-    this.trainer.animations.add('walk-down', [0, 1, 2, 1]);
-    this.trainer.animations.add('walk-up', [3, 4, 5, 4]);
-    this.trainer.animations.add('walk-side', [6, 7, 8, 7]);
-  }
-
-  function update() {
-    if (Controller.upKey.isDown) {
-      this.trainer.direction = Direction.UP;
-    } else if (Controller.downKey.isDown) {
-      this.trainer.direction = Direction.DOWN;
-    } else if (Controller.rightKey.isDown) {
-      this.trainer.direction = Direction.RIGHT;
-    } else if (Controller.leftKey.isDown) {
-      this.trainer.direction = Direction.LEFT;
-    } else {
-      this.trainer.direction = Direction.NONE;
+        this.trainer.animations.add('walk-down', [0, 1, 2, 1]);
+        this.trainer.animations.add('walk-up', [3, 4, 5, 4]);
+        this.trainer.animations.add('walk-side', [6, 7, 8, 7]);
     }
 
-    Character.update(this.trainer, speed);
-  }
+    function update() {
+        if (Controller.upKey.isDown) {
+            this.trainer.direction = Direction.UP;
+        } else if (Controller.downKey.isDown) {
+            this.trainer.direction = Direction.DOWN;
+        } else if (Controller.rightKey.isDown) {
+            this.trainer.direction = Direction.RIGHT;
+        } else if (Controller.leftKey.isDown) {
+            this.trainer.direction = Direction.LEFT;
+        } else {
+            this.trainer.direction = Direction.NONE;
+        }
 
-  function render() {
-    Character.render(this.trainer, scale, fps)
-  }
+        Character.update(this.trainer, speed);
+    }
 
-  function debug() {
-    Character.debug(this.trainer);
-  }
+    function render() {
+        Character.render(this.trainer, scale, fps)
+    }
 
-  return {
-    trainer: trainer,
-    init: init,
-    update: update,
-    render: render,
-    debug: debug
-  }
+    function debug() {
+        Character.debug(this.trainer);
+    }
+
+    return {
+        trainer: trainer,
+        init: init,
+        update: update,
+        render: render,
+        debug: debug
+    }
 }();

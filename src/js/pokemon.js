@@ -1,35 +1,39 @@
 Pokemon = function() {
 
-  var pokemon;
+    var pokemon;
 
-  var speed = 100;
+    var speed = 100;
 
-  var scale = 1.5;
+    var scale = 1.5;
 
-  var fps = 10;
+    var fps = 10;
 
-  function init() {
-    this.pokemon = Character.create(200, 200, 'cyndaquil', scale);
+    var proxAff = 50; //AKA Proximity Affinity
 
-    this.pokemon.animations.add('walk-down', [0, 1, 2, 1]);
-    this.pokemon.animations.add('walk-up', [3, 4, 5, 4]);
-    this.pokemon.animations.add('walk-side', [6, 7, 8, 7]);
-  }
+    // Should this be called "create" instead? Because of how its used in character.js
+    function init() {
+        this.pokemon = Character.create(200, 200, 'cyndaquil', scale);
 
-  function update() {
-    this.pokemon.direction = Direction.NONE;
+        this.pokemon.animations.add('walk-down', [0, 1, 2, 1]);
+        this.pokemon.animations.add('walk-up', [3, 4, 5, 4]);
+        this.pokemon.animations.add('walk-side', [6, 7, 8, 7]);
+    }
 
-    Character.update(this.pokemon, speed);
-  }
+    // Should it be some "world" object rather than just a trainer that gets passed in?
+    function update(trainer) {
+        Behavior.follow(this.pokemon, trainer, proxAff);
 
-  function render() {
-    Character.render(this.pokemon, scale, fps)
-  }
+        Character.update(this.pokemon, speed);
+    }
 
-  return {
-    pokemon: pokemon,
-    init: init,
-    update: update,
-    render: render
-  }
+    function render() {
+        Character.render(this.pokemon, scale, fps)
+    }
+
+    return {
+        pokemon: pokemon,
+        init: init,
+        update: update,
+        render: render
+    }
 }();
